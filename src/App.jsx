@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+/* eslint-disable no-unused-vars */
+import {useReducer} from 'react'
 import './App.css'
+import CountButton from './Components/Buttons/CountButton'
+
+const reducer = (state,action) => {
+  //
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [state] - state variable similar to useState
+  // const [dispatch] - function to update state similar to useState
+  // userReducer(...) - initialstate similar to useState (this is specifically the part that comes after the reducer function)
+  const initialCount = 10
+  // state will always be called state. and the general convention is to use an object that will combine all the state required to make our component work correctly.
+  // dispatch will always be called dispatch
+  // so if i want to access the count state, i will use state.count
+  const [state,dispatch] = useReducer(reducer,{
+    count: initialCount,
+    valueToAdd: 0
+  })
+
+  const increment = () => { }
+  const decrement = () => { }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div >
+      {/* ****USE REDUCER PRACTICE */}
+      <CountButton
+        handleClick={increment} />
+      <CountButton
+        handleClick={decrement} />
+      <p>{state.count}</p>
+    </div>
   )
 }
 
